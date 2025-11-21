@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Documentação do Sandbox GTM/GA4 - [Seu Nome]</title>
+    <title>Guia Prático: Sandbox GTM, GA4 e Simulação de Funil Web</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -13,81 +13,113 @@
     })(window,document,'script','dataLayer','GTM-K75QBQZD');</script>
     <!-- End Google Tag Manager -->
     <style>
-        /* Estilos Profissionais */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
-        .header { background-color: #2c3e50; color: white; padding: 30px 20px; text-align: center; }
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .section { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 30px; }
-        h1, h2 { color: #34495e; }
-        h3 { color: #3498db; border-bottom: 2px solid #ecf0f1; padding-bottom: 5px; margin-top: 25px; }
-        code { background-color: #eaf1f7; padding: 2px 4px; border-radius: 4px; color: #c0392b; font-size: 0.9em; }
-        ul { list-style-type: disc; margin-left: 20px; }
-        .button-test { padding: 10px 15px; border-radius: 5px; cursor: pointer; margin-top: 10px; font-weight: bold; border: none; }
-        .btn-busca { background-color: #f1c40f; color: #333; }
-        .btn-conversao { background-color: #2ecc71; color: white; }
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #e9ecef; color: #343a40; line-height: 1.6; }
+        .header { background-color: #007bff; color: white; padding: 30px 20px; text-align: center; }
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .section { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); margin-bottom: 30px; }
+        h1 { margin: 0; font-weight: 300; }
+        h2 { color: #007bff; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-top: 0; }
+        h3 { color: #1e8449; margin-top: 25px; }
+        code { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 2px 6px; border-radius: 4px; color: #c0392b; font-size: 0.9em; display: inline-block; margin: 0 2px; }
+        pre { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        ul { list-style-type: none; padding-left: 0; }
+        ul li { margin-bottom: 10px; border-left: 3px solid #007bff; padding-left: 10px; }
+        .funnel-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 20px; }
+        .funnel-step { flex: 1 1 200px; padding: 15px; border-radius: 6px; text-align: center; color: white; transition: transform 0.2s; }
+        .funnel-step:hover { transform: translateY(-3px); }
+        .step-search { background-color: #f39c12; }
+        .step-select { background-color: #3498db; }
+        .step-checkout { background-color: #8e44ad; }
+        .step-purchase { background-color: #27ae60; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>[Seu Nome] - Documentação de Sandbox Web Analytics</h1>
-        <p>Demonstração de implementação de Tags GTM e rastreamento de eventos personalizados no GA4.</p>
+        <h1>Guia de Implementação: Criando um Sandbox de Tagueamento GTM & GA4</h1>
+        <p>Documentação e laboratório de testes para demonstração de habilidades em Web Analytics.</p>
     </div>
 
     <div class="container">
         <div class="section">
-            <h2>1. Visão Geral: Criação de um Ambiente de Teste (Sandbox)</h2>
-            <p>Este repositório no GitHub Pages serve como um ambiente controlado para simular o comportamento de um site real e testar a injeção e o disparo de Tags sem impactar a produção.</p>
-
-            <h3>Passos Fundamentais (O Que Aprendemos):</h3>
+            <h2>1. Setup e Implementação do Ambiente</h2>
+            
+            <h3>Passo 1.1: Configuração do GA4 (ID de Métrica)</h3>
             <ul>
-                <li><strong>Escolha da Plataforma:</strong> Usar o GitHub Pages para garantir acesso irrestrito ao código HTML (incluindo o &lt;head&gt;).</li>
-                <li><strong>Geração da URL:</strong> Obter uma URL pública (<code>https://</code>) para que o GA4 e o Tag Assistant aceitem a conexão (resolvendo o problema do <code>file:///</code>).</li>
-                <li><strong>Implementação:</strong> Inserir o snippet do GTM diretamente no &lt;head&gt; para garantir a inicialização correta e a detecção pelo Tag Assistant.</li>
+                <li>O processo começa com a criação de uma Propriedade no Google Analytics 4 (GA4).</li>
+                <li>Gera-se um **ID de Métrica** (<code>G-XXXXXXX</code>). Este ID é o destino final de todos os dados.</li>
+                <li>**Sem dados reais:** Para o sandbox, criamos um Fluxo de Dados Web com um URL placeholder, pois o domínio real será o do GitHub Pages.</li>
             </ul>
+
+            <h3>Passo 1.2: Configuração do GTM (Container ID)</h3>
+            <ul>
+                <li>Cria-se um Contêiner Web no Google Tag Manager (GTM).</li>
+                <li>Gera-se o **ID do Contêiner** (<code>GTM-SEU-ID</code>). Este é o identificador que usamos para injetar o GTM no site.</li>
+            </ul>
+
+            <h3>Passo 1.3: Injeção do Código no Site (GitHub Pages)</h3>
+            <p>A melhor prática exige que o snippet de código do GTM seja colocado o mais alto possível na tag <code>&lt;head&gt;</code>. O GitHub Pages permite este controle:</p>
+            <pre>&lt;head&gt;
+    &lt;!-- O GTM DEVE SER O PRIMEIRO SCRIPT NO HEAD --&gt;
+    &lt;script&gt;... (Seu Código GTM) ...&lt;/script&gt;
+    ...
+&lt;/head&gt;</pre>
+            <p>A injeção correta é verificada pelo **Tag Assistant** do GTM, garantindo que o <code>dataLayer</code> seja inicializado antes de qualquer outro evento.</p>
         </div>
 
         <div class="section">
-            <h2>2. O Código: Injeção e Camada de Dados (DataLayer)</h2>
-            <p>Os testes de Tags dependem do <code>dataLayer</code> para enviar informações do site para o GTM.</p>
-            
-            <h3>Função do Botão (Exemplo de Implementação):</h3>
-            <p>Ao clicar nos botões abaixo, um evento personalizado é enviado ao <code>dataLayer</code>, que o GTM capta para disparar a Tag do GA4.</p>
-            <p>A estrutura de um evento personalizado é: <code>dataLayer.push({'event': 'nome_do_evento', 'parametro': 'valor'})</code>.</p>
-        </div>
+            <h2>2. Simulação de Funil Web (Demonstração Prática)</h2>
+            <p>O funil abaixo simula a jornada de compra de um produto (ex: uma passagem aérea), enviando eventos ao <code>dataLayer</code> que o GTM capturará para enviar ao GA4. Use o **Preview Mode** para inspecionar os eventos.</p>
 
-        <div class="section">
-            <h2>3. Laboratório de Testes (Demonstração)</h2>
-            <p>Use o **Preview Mode** do GTM e clique nos botões abaixo. O Tag Assistant deve registrar o evento, e o GA4 deve recebê-lo em Tempo Real.</p>
-            
-            <hr>
+            <div class="funnel-container">
+                <button class="funnel-step step-search" onclick="
+                    dataLayer.push({
+                        'event': 'view_search_results',
+                        'origem_voo': 'GRU',
+                        'destino_voo': 'GIG'
+                    });
+                    alert('EVENTO: view_search_results. Etapa 1 do funil.');
+                ">
+                    🔎 1. Pesquisa de Voo
+                </button>
 
-            <h3>Teste A: Evento com Parâmetros</h3>
-            <button class="button-test btn-busca" onclick="
-                dataLayer.push({
-                    'event': 'rastreio_busca',
-                    'tipo_busca': 'ID_Produto',
-                    'origem_pagina': window.location.pathname
-                });
-                alert('EVENTO: rastreio_busca enviado! Verifique parâmetros no Tag Assistant.');
-            ">
-                Simular Rastreio de Busca
-            </button>
+                <button class="funnel-step step-select" onclick="
+                    dataLayer.push({
+                        'event': 'select_item',
+                        'item_id': 'Voo_463',
+                        'tipo_assento': 'Executiva'
+                    });
+                    alert('EVENTO: select_item. Etapa 2 do funil.');
+                ">
+                    💺 2. Seleção de Assento
+                </button>
 
-            <h3>Teste B: Evento de Conversão (Lead)</h3>
-            <button class="button-test btn-conversao" onclick="
-                dataLayer.push({
-                    'event': 'conversao_lead',
-                    'valor': 100,
-                    'moeda': 'BRL'
-                });
-                alert('EVENTO: conversao_lead enviado! Verifique a conversão no GA4.');
-            ">
-                Simular Lead/Conversão
-            </button>
+                <button class="funnel-step step-checkout" onclick="
+                    dataLayer.push({
+                        'event': 'begin_checkout',
+                        'valor_total': 1850.50
+                    });
+                    alert('EVENTO: begin_checkout. Etapa 3 do funil.');
+                ">
+                    🛒 3. Início de Checkout
+                </button>
+
+                <button class="funnel-step step-purchase" onclick="
+                    dataLayer.push({
+                        'event': 'purchase',
+                        'transaction_id': 'T-' + Math.floor(Math.random() * 10000),
+                        'value': 1850.50,
+                        'currency': 'BRL'
+                    });
+                    alert('EVENTO: purchase. Etapa 4 do funil. CONVERSÃO FINAL!');
+                ">
+                    ✅ 4. Purchase (Transação Final)
+                </button>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;"><strong>Objetivo de Tagueamento:</strong> Criar um Trigger personalizado para cada evento e Tags de Evento GA4 que capturem os parâmetros (ex: <code>origem_voo</code>, <code>valor_total</code>).</p>
         </div>
 
         <div class="section" style="text-align: center; font-size: 0.9em; color: #7f8c8d;">
-            <p>Este sandbox é um projeto de aprendizado prático e demonstração de habilidade em Web Analytics.</p>
+            <p>Este ambiente demonstra a habilidade de implementar tagueamento de funil e a gestão de Tags via GTM.</p>
         </div>
     </div>
 </body>
