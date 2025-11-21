@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Guia Prático: Sandbox GTM, GA4 e Simulação de Funil Web</title>
+    <title>Portfólio Analítico: Simulação de Funil Web e Documentação GTM/GA4</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -13,114 +13,255 @@
     })(window,document,'script','dataLayer','GTM-K75QBQZD');</script>
     <!-- End Google Tag Manager -->
     <style>
-        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background-color: #e9ecef; color: #343a40; line-height: 1.6; }
-        .header { background-color: #007bff; color: white; padding: 30px 20px; text-align: center; }
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .section { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); margin-bottom: 30px; }
-        h1 { margin: 0; font-weight: 300; }
-        h2 { color: #007bff; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-top: 0; }
-        h3 { color: #1e8449; margin-top: 25px; }
-        code { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 2px 6px; border-radius: 4px; color: #c0392b; font-size: 0.9em; display: inline-block; margin: 0 2px; }
-        pre { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; overflow-x: auto; }
-        ul { list-style-type: none; padding-left: 0; }
-        ul li { margin-bottom: 10px; border-left: 3px solid #007bff; padding-left: 10px; }
-        .funnel-container { display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-top: 20px; }
-        .funnel-step { flex: 1 1 200px; padding: 15px; border-radius: 6px; text-align: center; color: white; transition: transform 0.2s; }
-        .funnel-step:hover { transform: translateY(-3px); }
-        .step-search { background-color: #f39c12; }
-        .step-select { background-color: #3498db; }
-        .step-checkout { background-color: #8e44ad; }
-        .step-purchase { background-color: #27ae60; }
+        /* Estilos Base e Layout */
+        body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #343a40; line-height: 1.6; }
+        .header { background-color: #004d99; color: white; padding: 30px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .tabs { display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; }
+        .tab-button { background-color: #f1f1f1; border: none; padding: 15px 25px; cursor: pointer; font-size: 16px; transition: background-color 0.3s, color 0.3s; margin-right: 5px; border-top-left-radius: 8px; border-top-right-radius: 8px; }
+        .tab-button.active { background-color: white; color: #007bff; border-bottom: 2px solid white; margin-bottom: -2px; font-weight: bold; box-shadow: 0 -2px 5px rgba(0,0,0,0.05); }
+        .tab-content { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
+        h2 { color: #007bff; border-bottom: 1px solid #dee2e6; padding-bottom: 10px; margin-top: 0; }
+        h3 { color: #2c3e50; margin-top: 20px; }
+        
+        /* Estilos de Formulário/Funil */
+        .funnel-step-content { display: none; padding: 20px; border: 1px solid #e9ecef; border-radius: 5px; margin-top: 15px; }
+        .funnel-step-content.active { display: block; }
+        .funnel-nav button { margin-right: 10px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; background-color: #28a745; color: white; transition: background-color 0.3s; }
+        .funnel-nav button:hover { background-color: #218838; }
+        input[type="text"], input[type="date"] { padding: 10px; margin-right: 10px; border: 1px solid #ced4da; border-radius: 4px; }
+        .product-card { border: 1px solid #007bff; padding: 15px; border-radius: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .status-bar { display: flex; margin-bottom: 20px; background-color: #e9ecef; border-radius: 4px; overflow: hidden; }
+        .status-item { flex: 1; padding: 10px 0; text-align: center; color: #495057; font-weight: bold; background-color: #f1f1f1; transition: background-color 0.4s; }
+        .status-item.current { background-color: #007bff; color: white; }
+
+        /* Estilos de Tutorial */
+        .tutorial-step { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
+        code { background-color: #eaf1f7; padding: 2px 4px; border-radius: 4px; color: #c0392b; font-size: 0.9em; }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Guia de Implementação: Criando um Sandbox de Tagueamento GTM & GA4</h1>
-        <p>Documentação e laboratório de testes para demonstração de habilidades em Web Analytics.</p>
+        <h1>Portfólio de Alta Performance: GTM/GA4 Web Funnel Analytics</h1>
+        <p>Simulação e documentação do processo de implementação de tagueamento de funil com dados avançados.</p>
     </div>
 
     <div class="container">
-        <div class="section">
-            <h2>1. Setup e Implementação do Ambiente</h2>
-            
-            <h3>Passo 1.1: Configuração do GA4 (ID de Métrica)</h3>
-            <ul>
-                <li>O processo começa com a criação de uma Propriedade no Google Analytics 4 (GA4).</li>
-                <li>Gera-se um **ID de Métrica** (<code>G-XXXXXXX</code>). Este ID é o destino final de todos os dados.</li>
-                <li>**Sem dados reais:** Para o sandbox, criamos um Fluxo de Dados Web com um URL placeholder, pois o domínio real será o do GitHub Pages.</li>
-            </ul>
-
-            <h3>Passo 1.2: Configuração do GTM (Container ID)</h3>
-            <ul>
-                <li>Cria-se um Contêiner Web no Google Tag Manager (GTM).</li>
-                <li>Gera-se o **ID do Contêiner** (<code>GTM-SEU-ID</code>). Este é o identificador que usamos para injetar o GTM no site.</li>
-            </ul>
-
-            <h3>Passo 1.3: Injeção do Código no Site (GitHub Pages)</h3>
-            <p>A melhor prática exige que o snippet de código do GTM seja colocado o mais alto possível na tag <code>&lt;head&gt;</code>. O GitHub Pages permite este controle:</p>
-            <pre>&lt;head&gt;
-    &lt;!-- O GTM DEVE SER O PRIMEIRO SCRIPT NO HEAD --&gt;
-    &lt;script&gt;... (Seu Código GTM) ...&lt;/script&gt;
-    ...
-&lt;/head&gt;</pre>
-            <p>A injeção correta é verificada pelo **Tag Assistant** do GTM, garantindo que o <code>dataLayer</code> seja inicializado antes de qualquer outro evento.</p>
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'simulacao')">✈️ Simulação de Funil Web (Laboratório)</button>
+            <button class="tab-button" onclick="openTab(event, 'tutorial')">📚 Documentação do Projeto (Tutorial)</button>
         </div>
 
-        <div class="section">
-            <h2>2. Simulação de Funil Web (Demonstração Prática)</h2>
-            <p>O funil abaixo simula a jornada de compra de um produto (ex: uma passagem aérea), enviando eventos ao <code>dataLayer</code> que o GTM capturará para enviar ao GA4. Use o **Preview Mode** para inspecionar os eventos.</p>
+        <div id="simulacao" class="tab-content active">
+            <h2>Funil de Passagens Aéreas: Teste de Eventos e Parâmetros</h2>
+            <p><strong>Instrução:</strong> Use o **Tag Assistant** do GTM e clique em cada passo para rastrear o funil. Os eventos e dados estão em conformidade com o padrão de Enhanced E-commerce do GA4.</p>
 
-            <div class="funnel-container">
-                <button class="funnel-step step-search" onclick="
-                    dataLayer.push({
-                        'event': 'view_search_results',
-                        'origem_voo': 'GRU',
-                        'destino_voo': 'GIG'
-                    });
-                    alert('EVENTO: view_search_results. Etapa 1 do funil.');
-                ">
-                    🔎 1. Pesquisa de Voo
-                </button>
-
-                <button class="funnel-step step-select" onclick="
-                    dataLayer.push({
-                        'event': 'select_item',
-                        'item_id': 'Voo_463',
-                        'tipo_assento': 'Executiva'
-                    });
-                    alert('EVENTO: select_item. Etapa 2 do funil.');
-                ">
-                    💺 2. Seleção de Assento
-                </button>
-
-                <button class="funnel-step step-checkout" onclick="
-                    dataLayer.push({
-                        'event': 'begin_checkout',
-                        'valor_total': 1850.50
-                    });
-                    alert('EVENTO: begin_checkout. Etapa 3 do funil.');
-                ">
-                    🛒 3. Início de Checkout
-                </button>
-
-                <button class="funnel-step step-purchase" onclick="
-                    dataLayer.push({
-                        'event': 'purchase',
-                        'transaction_id': 'T-' + Math.floor(Math.random() * 10000),
-                        'value': 1850.50,
-                        'currency': 'BRL'
-                    });
-                    alert('EVENTO: purchase. Etapa 4 do funil. CONVERSÃO FINAL!');
-                ">
-                    ✅ 4. Purchase (Transação Final)
-                </button>
+            <div class="status-bar" id="funnel-status">
+                <div class="status-item current" data-step="1">1. Pesquisa</div>
+                <div class="status-item" data-step="2">2. Seleção</div>
+                <div class="status-item" data-step="3">3. Checkout</div>
+                <div class="status-item" data-step="4">4. Purchase</div>
             </div>
-            <p style="margin-top: 20px; font-size: 0.9em; color: #7f8c8d;"><strong>Objetivo de Tagueamento:</strong> Criar um Trigger personalizado para cada evento e Tags de Evento GA4 que capturem os parâmetros (ex: <code>origem_voo</code>, <code>valor_total</code>).</p>
+
+            <div id="step-1" class="funnel-step-content active">
+                <h3>1. Pesquisa de Voos (view_search_results)</h3>
+                <p>Simulação de busca por origem/destino.</p>
+                <input type="text" id="origem" value="GRU" placeholder="Origem (ex: GRU)">
+                <input type="text" id="destino" value="GIG" placeholder="Destino (ex: GIG)">
+                <input type="date" id="data_voo" value="2025-12-15">
+                <div class="funnel-nav" style="margin-top: 15px;">
+                    <button onclick="nextStep(2, 'view_search_results')">Pesquisar Voos</button>
+                </div>
+            </div>
+
+            <div id="step-2" class="funnel-step-content">
+                <h3>2. Seleção de Voo (select_item)</h3>
+                <p>Simulação de opções de voo disponíveis. Escolha uma para avançar.</p>
+                <div class="product-card">
+                    <span>Voo LATAM LA3400 (Executiva) - 15/Dez</span>
+                    <span><strong>R$ 1.850,50</strong></span>
+                    <button class="button-analytics" onclick="selectFlight('Voo_LA3400', 'Executiva', 1850.50)">Selecionar</button>
+                </div>
+                <div class="product-card">
+                    <span>Voo GOL G3200 (Econômica) - 15/Dez</span>
+                    <span><strong>R$ 890,00</strong></span>
+                    <button class="button-analytics" onclick="selectFlight('Voo_G3200', 'Econômica', 890.00)">Selecionar</button>
+                </div>
+            </div>
+
+            <div id="step-3" class="funnel-step-content">
+                <h3>3. Início do Checkout (begin_checkout)</h3>
+                <p><strong>Sumário:</strong> Voo <span id="flight-id">---</span>, Valor Total: <span id="flight-price">---</span>. (Dados enviados ao DataLayer).</p>
+                <input type="text" placeholder="Nome Completo">
+                <input type="text" placeholder="E-mail">
+                <div class="funnel-nav" style="margin-top: 15px;">
+                    <button onclick="nextStep(4, 'begin_checkout')">Confirmar Dados e Pagar</button>
+                </div>
+            </div>
+
+            <div id="step-4" class="funnel-step-content">
+                <h3>4. Purchase (Transação Final)</h3>
+                <p>Ação final de conversão. O evento <code>purchase</code> é crucial para a receita no GA4.</p>
+                <p><strong>Valor Total Rastreável:</strong> <span id="final-price">---</span></p>
+                <div class="funnel-nav" style="margin-top: 15px;">
+                    <button onclick="purchaseFlight()">Finalizar Compra e Rastrear</button>
+                </div>
+            </div>
         </div>
 
-        <div class="section" style="text-align: center; font-size: 0.9em; color: #7f8c8d;">
-            <p>Este ambiente demonstra a habilidade de implementar tagueamento de funil e a gestão de Tags via GTM.</p>
+        <div id="tutorial" class="tab-content" style="display:none;">
+            <h2>Documentação do Projeto Analítico: Implementação GTM/GA4</h2>
+            <p>Este guia documenta o processo de setup, implementação e teste de eventos personalizados de funil para o Google Analytics 4 (GA4).</p>
+
+            <div class="tutorial-step">
+                <h3>1. Setup Básico (GA4, GTM & Hosting)</h3>
+                <ul>
+                    <li><strong>GA4:</strong> Criação de Propriedade e obtenção do ID de Métrica (<code>G-XXXXX</code>).</li>
+                    <li><strong>GTM:</strong> Criação de Contêiner Web e obtenção do ID (<code>GTM-SEU-ID</code>).</li>
+                    <li><strong>Hosting:</strong> Uso do **GitHub Pages** para garantir um ambiente **<code>https://</code>** com acesso total ao &lt;head&gt;.</li>
+                </ul>
+            </div>
+            
+            <div class="tutorial-step">
+                <h3>2. A Injeção Correta do GTM</h3>
+                <p>O snippet GTM foi colocado como o primeiro item dentro da tag <code>&lt;head&gt;</code> do arquivo <code>index.html</code>. Essa prática garante o carregamento ideal e a detecção pelo Tag Assistant.</p>
+                <pre>&lt;script&gt;... (Seu Código GTM) ...&lt;/script&gt;</pre>
+            </div>
+            
+            <div class="tutorial-step">
+                <h3>3. Estratégia de Tagueamento (DataLayer)</h3>
+                <p>Os eventos são disparados por meio de cliques nos botões do funil. Usamos o <code>dataLayer.push</code> para enviar dados ricos e descritivos ao GTM:</p>
+                <pre>dataLayer.push({
+    'event': 'select_item',
+    'ecommerce': {
+        'items': [...]
+    }
+});</pre>
+                <p>Essa estrutura permite que o GTM crie **Tags de Evento GA4** que capturam todos os parâmetros necessários para análise de funil e receita.</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Variável global para armazenar os dados do item selecionado
+        let selectedFlight = {};
+
+        // -------------------------------------------------------------------
+        // FUNÇÕES DE NAVEGAÇÃO E DATALAYER
+        // -------------------------------------------------------------------
+        function updateStatus(step) {
+            document.querySelectorAll('.status-item').forEach(item => {
+                item.classList.remove('current');
+                if (parseInt(item.dataset.step) === step) {
+                    item.classList.add('current');
+                }
+            });
+        }
+
+        function nextStep(nextStepNumber, eventName) {
+            // Esconde todas as etapas e mostra a próxima
+            document.querySelectorAll('.funnel-step-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(`step-${nextStepNumber}`).classList.add('active');
+
+            // Atualiza a barra de status
+            updateStatus(nextStepNumber);
+
+            // Dispara o evento DataLayer (Apenas para as transições que não disparam um evento específico)
+            if (eventName === 'view_search_results') {
+                const origin = document.getElementById('origem').value;
+                const destination = document.getElementById('destino').value;
+                
+                dataLayer.push({
+                    'event': eventName,
+                    'origem_voo': origin,
+                    'destino_voo': destination
+                });
+                console.log(`Event sent: ${eventName}`);
+            }
+        }
+
+        function selectFlight(id, name, price) {
+            // Armazena os dados do voo e preenche o sumário do checkout
+            selectedFlight = { id, name, price };
+            
+            document.getElementById('flight-id').innerText = selectedFlight.id;
+            document.getElementById('flight-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
+            document.getElementById('final-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
+            
+            // Dispara o evento select_item (Enhanced Ecommerce)
+            dataLayer.push({
+                'event': 'select_item',
+                'ecommerce': {
+                    'items': [{
+                        item_id: selectedFlight.id,
+                        item_name: selectedFlight.name,
+                        price: selectedFlight.price,
+                        currency: 'BRL',
+                        quantity: 1
+                    }]
+                }
+            });
+            console.log(`Event sent: select_item with price ${price}`);
+
+            // Avança para a próxima etapa (Checkout)
+            nextStep(3, 'begin_checkout_transition'); 
+        }
+
+        function purchaseFlight() {
+            if (!selectedFlight.id) {
+                alert('Por favor, selecione um voo primeiro!');
+                return;
+            }
+
+            const transactionId = 'T-' + Math.floor(Math.random() * 100000);
+
+            // Dispara o evento purchase (Conversão Final)
+            dataLayer.push({
+                'event': 'purchase',
+                'ecommerce': {
+                    'transaction_id': transactionId,
+                    'value': selectedFlight.price,
+                    'currency': 'BRL',
+                    'items': [{
+                        item_id: selectedFlight.id,
+                        item_name: selectedFlight.name,
+                        price: selectedFlight.price,
+                        currency: 'BRL',
+                        quantity: 1
+                    }]
+                }
+            });
+            alert(`COMPRA FINALIZADA! Evento 'purchase' enviado com ID: ${transactionId}. Verifique no GA4!`);
+            console.log(`Event sent: purchase with transaction ID ${transactionId}`);
+        }
+
+        // -------------------------------------------------------------------
+        // FUNÇÕES DE CONTROLE DE ABAS
+        // -------------------------------------------------------------------
+        function openTab(evt, tabName) {
+            // Esconde todo o conteúdo da aba
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+
+            // Remove a classe 'active' de todos os botões
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            // Mostra o conteúdo da aba atual e define o botão como ativo
+            document.getElementById(tabName).style.display = 'block';
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Inicializa a navegação da aba ao carregar a página
+        document.addEventListener('DOMContentLoaded', () => {
+            // Garante que a primeira aba de simulação esteja ativa ao carregar
+            document.getElementById('simulacao').style.display = 'block';
+        });
+
+    </script>
 </body>
 </html>
