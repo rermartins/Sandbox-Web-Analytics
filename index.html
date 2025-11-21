@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Portfólio & GTM Sandbox</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-SEU-ID');</script>
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 40px; background-color: #f0f2f5; }
+        .container { background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-width: 900px; margin: auto; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .button-analytics { padding: 10px 15px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfólio de Testes - Renan</h1>
+        <p>Esta página é seu laboratório ativo! O código GTM está corretamente injetado no &lt;head&gt;.</p>
+
+        <hr>
+
+        <h2>Projeto 1: Rastreamento de Ação</h2>
+        <p>Use este botão para testar se seu GTM está funcionando e enviando parâmetros.</p>
+        
+        <button class="button-analytics" onclick="
+            // Ação real que você quer rastrear: Clique para ver detalhes do projeto
+            dataLayer.push({
+                'event': 'clique_ver_detalhes',
+                'nome_projeto': 'Migracao GTM-GA4',
+                'categoria': 'WebAnalytics'
+            });
+            alert('Evento de clique enviado para o dataLayer!');
+        ">
+            Ver Detalhes do Projeto (CLIQUE PARA TESTAR)
+        </button>
+
+        <hr>
+        
+        <h2>Conversão Importante</h2>
+        <p>Use este botão para testar o envio de um evento de conversão.</p>
+        
+        <button class="button-analytics" style="background-color: #2ecc71;" onclick="
+            dataLayer.push({
+                'event': 'conversao_lead',
+                'tipo_lead': 'Contato_Curriculo'
+            });
+            alert('Evento de Conversão enviado para o dataLayer!');
+        ">
+            Baixar Currículo (RASTREAR CONVERSÃO)
+        </button>
+    </div>
+</body>
+</html>
