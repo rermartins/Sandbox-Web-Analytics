@@ -145,7 +145,7 @@
     <script>
         // Variável global para armazenar os dados do item selecionado
         let selectedFlight = {};
-
+    
         // -------------------------------------------------------------------
         // FUNÇÕES DE NAVEGAÇÃO E DATALAYER
         // -------------------------------------------------------------------
@@ -157,40 +157,43 @@
                 }
             });
         }
-
-        function nextStep(nextStepNumber, eventName) {
+    
+        function nextStep(nextStepNumber) {
             // Esconde todas as etapas e mostra a próxima
             document.querySelectorAll('.funnel-step-content').forEach(content => {
                 content.classList.remove('active');
             });
             document.getElementById(`step-${nextStepNumber}`).classList.add('active');
-
+    
             // Atualiza a barra de status
             updateStatus(nextStepNumber);
-
-            // Dispara o evento DataLayer (Apenas para as transições que não disparam um evento específico)
-            if (eventName === 'view_search_results') {
-                const origin = document.getElementById('origem').value;
-                const destination = document.getElementById('destino').value;
-                
-                dataLayer.push({
-                    'event': eventName,
-                    'origem_voo': origin,
-                    'destino_voo': destination
-                });
-                console.log(`Event sent: ${eventName}`);
-            }
         }
-
+    
+        function viewSearchResults(eventName) {
+            const origin = document.getElementById('origem').value;
+            const destination = document.getElementById('destino').value;
+    
+            // Dispara o evento view_search_results (Etapa 1)
+            dataLayer.push({
+                'event': eventName,
+                'origem_voo': origin,
+                'destino_voo': destination
+            });
+            console.log(`Event sent: ${eventName}`);
+    
+            // Avança para a próxima etapa (Resultados)
+            nextStep(2);
+        }
+    
         function selectFlight(id, name, price) {
             // Armazena os dados do voo e preenche o sumário do checkout
             selectedFlight = { id, name, price };
-            
+    
             document.getElementById('flight-id').innerText = selectedFlight.id;
             document.getElementById('flight-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
             document.getElementById('final-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
-            
-            // Dispara o evento select_item (Enhanced Ecommerce)
+    
+            // Dispara o evento select_item (Etapa 2)
             dataLayer.push({
                 'event': 'select_item',
                 'ecommerce': {
@@ -204,22 +207,51 @@
                 }
             });
             console.log(`Event sent: select_item with price ${price}`);
-
-            // Avança para a próxima etapa (Checkout)
-            nextStep(3, 'begin_checkout_transition'); 
+    
+            // Avança para a próxima etapa (Checkout) e dispara begin_checkout
+            beginCheckout();
         }
-
+        
+        // NOVO: Função para disparar o evento de início de checkout
+        function beginCheckout() {
+            // Dispara o evento begin_checkout (Etapa 3)
+            dataLayer.push({
+                'event': 'begin_checkout',
+                'ecommerce': {
+                    'value': selectedFlight.price,
+                    'currency': 'BRL',
+                    'items': [{
+                        item_id: selectedFlight.id,
+                        item_name: selectedFlight.name,
+                        price: selectedFlight.price,
+                        currency: 'BRL',
+                        quantity: 1
+                    }]
+                }
+            });
+            console.log('Event sent: begin_checkout');
+            nextStep(3);
+        }
+    
         function purchaseFlight() {
             if (!selectedFlight.id) {
                 alert('Por favor, selecione um voo primeiro!');
                 return;
             }
-
+    
             const transactionId = 'T-' + Math.floor(Math.random() * 100000);
-
-            // Dispara o evento purchase (Conversão Final)
+            
+            // NOVO: Leitura dos dados do cliente (assumindo IDs 'nome_cliente' e 'email_cliente' no seu HTML)
+            const nome = document.getElementById('nome_cliente').value || "Cliente Teste";
+            const email = document.getElementById('email_cliente').value || "teste@exemplo.com";
+    
+    
+            // Dispara o evento purchase (Conversão Final - Etapa 4)
             dataLayer.push({
                 'event': 'purchase',
+                // NOVOS PARÂMETROS DE USUÁRIO
+                'user_name': nome,
+                'user_email': email,
                 'ecommerce': {
                     'transaction_id': transactionId,
                     'value': selectedFlight.price,
@@ -235,33 +267,30 @@
             });
             alert(`COMPRA FINALIZADA! Evento 'purchase' enviado com ID: ${transactionId}. Verifique no GA4!`);
             console.log(`Event sent: purchase with transaction ID ${transactionId}`);
+            nextStep(4);
         }
-
+    
         // -------------------------------------------------------------------
-        // FUNÇÕES DE CONTROLE DE ABAS
+        // FUNÇÕES DE CONTROLE DE ABAS (mantidas)
         // -------------------------------------------------------------------
         function openTab(evt, tabName) {
-            // Esconde todo o conteúdo da aba
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.style.display = 'none';
             });
-
-            // Remove a classe 'active' de todos os botões
+    
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
-
-            // Mostra o conteúdo da aba atual e define o botão como ativo
+    
             document.getElementById(tabName).style.display = 'block';
             evt.currentTarget.classList.add('active');
         }
-
-        // Inicializa a navegação da aba ao carregar a página
+    
         document.addEventListener('DOMContentLoaded', () => {
-            // Garante que a primeira aba de simulação esteja ativa ao carregar
             document.getElementById('simulacao').style.display = 'block';
+            // Chamada de viewSearchResults na página inicial, se necessário.
         });
-
+    
     </script>
 </body>
 </html>
