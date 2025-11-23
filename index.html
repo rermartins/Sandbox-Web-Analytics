@@ -4,14 +4,12 @@
     <title>Portfólio Analítico: Simulação de Funil Web e Documentação GTM/GA4</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Google Tag Manager -->
+
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K75QBQZD');</script>
-    <!-- End Google Tag Manager -->
     <style>
         /* Estilos Base e Layout */
         body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #343a40; line-height: 1.6; }
@@ -41,6 +39,8 @@
     </style>
 </head>
 <body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K75QBQZD"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="header">
         <h1>Sandbox Web Analytics: GTM/GA4 Web Funnel Analytics</h1>
         <p>Simulação e documentação do processo de implementação de tagueamento de funil com dados avançados.</p>
@@ -70,7 +70,7 @@
                 <input type="text" id="destino" value="GIG" placeholder="Destino (ex: GIG)">
                 <input type="date" id="data_voo" value="2025-12-15">
                 <div class="funnel-nav" style="margin-top: 15px;">
-                    <button onclick="nextStep(2, 'view_search_results')">Pesquisar Voos</button>
+                    <button onclick="viewSearchResults('view_search_results')">Pesquisar Voos</button>
                 </div>
             </div>
 
@@ -92,10 +92,10 @@
             <div id="step-3" class="funnel-step-content">
                 <h3>3. Início do Checkout (begin_checkout)</h3>
                 <p><strong>Sumário:</strong> Voo <span id="flight-id">---</span>, Valor Total: <span id="flight-price">---</span>. (Dados enviados ao DataLayer).</p>
-                <input type="text" placeholder="Nome Completo">
-                <input type="text" placeholder="E-mail">
+                <input type="text" id="nome_cliente" placeholder="Nome Completo" value="Cliente Teste">
+                <input type="email" id="email_cliente" placeholder="E-mail" value="teste@exemplo.com">
                 <div class="funnel-nav" style="margin-top: 15px;">
-                    <button onclick="nextStep(4, 'begin_checkout')">Confirmar Dados e Pagar</button>
+                    <button onclick="nextStep(4)">Continuar para o Pagamento</button>
                 </div>
             </div>
 
@@ -141,13 +141,13 @@
             </div>
         </div>
     </div>
-
+    
     <script>
         // Variável global para armazenar os dados do item selecionado
         let selectedFlight = {};
-    
+
         // -------------------------------------------------------------------
-        // FUNÇÕES DE NAVEGAÇÃO E DATALAYER
+        // FUNÇÕES DE NAVEGAÇÃO
         // -------------------------------------------------------------------
         function updateStatus(step) {
             document.querySelectorAll('.status-item').forEach(item => {
@@ -157,22 +157,25 @@
                 }
             });
         }
-    
+
         function nextStep(nextStepNumber) {
             // Esconde todas as etapas e mostra a próxima
             document.querySelectorAll('.funnel-step-content').forEach(content => {
                 content.classList.remove('active');
             });
             document.getElementById(`step-${nextStepNumber}`).classList.add('active');
-    
+
             // Atualiza a barra de status
             updateStatus(nextStepNumber);
         }
-    
+
+        // -------------------------------------------------------------------
+        // FUNÇÕES DATALAYER (EVENTOS GA4)
+        // -------------------------------------------------------------------
         function viewSearchResults(eventName) {
             const origin = document.getElementById('origem').value;
             const destination = document.getElementById('destino').value;
-    
+
             // Dispara o evento view_search_results (Etapa 1)
             dataLayer.push({
                 'event': eventName,
@@ -180,19 +183,19 @@
                 'destino_voo': destination
             });
             console.log(`Event sent: ${eventName}`);
-    
+
             // Avança para a próxima etapa (Resultados)
             nextStep(2);
         }
-    
+
         function selectFlight(id, name, price) {
             // Armazena os dados do voo e preenche o sumário do checkout
             selectedFlight = { id, name, price };
-    
+
             document.getElementById('flight-id').innerText = selectedFlight.id;
             document.getElementById('flight-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
             document.getElementById('final-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
-    
+
             // Dispara o evento select_item (Etapa 2)
             dataLayer.push({
                 'event': 'select_item',
@@ -207,12 +210,11 @@
                 }
             });
             console.log(`Event sent: select_item with price ${price}`);
-    
+
             // Avança para a próxima etapa (Checkout) e dispara begin_checkout
             beginCheckout();
         }
         
-        // NOVO: Função para disparar o evento de início de checkout
         function beginCheckout() {
             // Dispara o evento begin_checkout (Etapa 3)
             dataLayer.push({
@@ -230,26 +232,26 @@
                 }
             });
             console.log('Event sent: begin_checkout');
-            nextStep(3);
+            nextStep(3); // Vai para o passo 3 onde o usuário insere os dados
         }
-    
+
         function purchaseFlight() {
             if (!selectedFlight.id) {
                 alert('Por favor, selecione um voo primeiro!');
                 return;
             }
-    
+
             const transactionId = 'T-' + Math.floor(Math.random() * 100000);
             
-            // NOVO: Leitura dos dados do cliente (assumindo IDs 'nome_cliente' e 'email_cliente' no seu HTML)
+            // Leitura dos dados do cliente dos inputs corrigidos no HTML
             const nome = document.getElementById('nome_cliente').value || "Cliente Teste";
             const email = document.getElementById('email_cliente').value || "teste@exemplo.com";
-    
-    
+
+
             // Dispara o evento purchase (Conversão Final - Etapa 4)
             dataLayer.push({
                 'event': 'purchase',
-                // NOVOS PARÂMETROS DE USUÁRIO
+                // PARÂMETROS PERSONALIZADOS DO CLIENTE
                 'user_name': nome,
                 'user_email': email,
                 'ecommerce': {
@@ -269,28 +271,31 @@
             console.log(`Event sent: purchase with transaction ID ${transactionId}`);
             nextStep(4);
         }
-    
+
         // -------------------------------------------------------------------
-        // FUNÇÕES DE CONTROLE DE ABAS (mantidas)
+        // FUNÇÕES DE CONTROLE DE ABAS
         // -------------------------------------------------------------------
         function openTab(evt, tabName) {
+            // Esconde todo o conteúdo da aba
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.style.display = 'none';
             });
-    
+
+            // Remove a classe 'active' de todos os botões
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
-    
+
+            // Mostra o conteúdo da aba atual e define o botão como ativo
             document.getElementById(tabName).style.display = 'block';
             evt.currentTarget.classList.add('active');
         }
-    
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Garante que a primeira aba de simulação esteja ativa ao carregar
             document.getElementById('simulacao').style.display = 'block';
-            // Chamada de viewSearchResults na página inicial, se necessário.
         });
-    
+
     </script>
 </body>
 </html>
