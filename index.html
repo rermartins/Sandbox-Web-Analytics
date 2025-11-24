@@ -238,10 +238,10 @@
         let selectedFlight = {};
         let basePrice = 0;
         let finalPrice = 0;
-        const PET_COST = 100.00; // Custo fixo do serviço pet
+        const PET_COST = 100.00;
 
         // -------------------------------------------------------------------
-        // FUNÇÕES DE NAVEGAÇÃO E STATUS
+        // FUNÇÕES DE NAVEGAÇÃO E STATUS (CORRIGIDAS)
         // -------------------------------------------------------------------
         function updateStatus(step) {
             document.querySelectorAll('.status-item').forEach(item => {
@@ -255,8 +255,13 @@
         function nextStep(nextStepNumber) {
             // Se estiver indo do passo 3 para o 4 (Purchase), atualiza o sumário final
             if (nextStepNumber === 4) {
-                document.getElementById('summary-nome').innerText = document.getElementById('nome_cliente').value;
-                document.getElementById('summary-email').innerText = document.getElementById('email_cliente').value;
+                // TRY/CATCH para evitar quebra caso os elementos não existam
+                try {
+                    document.getElementById('summary-nome').innerText = document.getElementById('nome_cliente').value;
+                    document.getElementById('summary-email').innerText = document.getElementById('email_cliente').value;
+                } catch (e) {
+                    console.warn('Erro ao atualizar sumário. Elementos de input não encontrados.', e);
+                }
             }
             
             // Esconde todas as etapas
@@ -268,6 +273,7 @@
             const nextElement = document.getElementById(`step-${nextStepNumber}`);
             if (nextElement) {
                 nextElement.classList.add('active');
+                console.log(`Funil: Avançando para Etapa ${nextStepNumber}`);
             } else {
                 console.error(`Erro: Elemento com ID 'step-${nextStepNumber}' não encontrado!`);
                 return;
@@ -368,13 +374,13 @@
             }
 
 
-            // Dispara o evento begin_checkout (Etapa 3) com o preço final ajustável
+            // Dispara o evento begin_checkout (Etapa 3) com o preço final ajustado
             dataLayer.push({
                 'event': 'begin_checkout',
                 'ecommerce': {
-                    'value': finalPrice, // Usa o preço ajustado (com/sem pet)
+                    'value': finalPrice,
                     'currency': 'BRL',
-                    'items': checkoutItems // Lista ajustada de itens
+                    'items': checkoutItems
                 }
             });
             console.log(`Event sent: begin_checkout with total value ${finalPrice}`);
@@ -418,14 +424,13 @@
             // Dispara o evento purchase (Conversão Final - Etapa 4)
             dataLayer.push({
                 'event': 'purchase',
-                // PARÂMETROS PERSONALIZADOS DO CLIENTE
                 'user_name': nome,
                 'user_email': email,
                 'ecommerce': {
                     'transaction_id': transactionId,
-                    'value': finalPrice, // Valor total ajustado
+                    'value': finalPrice,
                     'currency': 'BRL',
-                    'items': purchaseItems // Lista ajustada de itens
+                    'items': purchaseItems
                 }
             });
             alert(`COMPRA FINALIZADA! Evento 'purchase' enviado com ID: ${transactionId}. Verifique no GA4!`);
@@ -434,23 +439,47 @@
         }
 
         // -------------------------------------------------------------------
-        // FUNÇÕES DE CONTROLE DE ABAS
+        // FUNÇÕES DE CONTROLE DE ABAS (CORRIGIDAS)
         // -------------------------------------------------------------------
         function openTab(evt, tabName) {
+            // Esconde todo o conteúdo da aba
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.style.display = 'none';
             });
+
+            // Remove a classe 'active' de todos os botões
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
-            document.getElementById(tabName).style.display = 'block';
-            evt.currentTarget.classList.add('active');
+
+            // Mostra o conteúdo da aba atual e define o botão como ativo
+            const tabElement = document.getElementById(tabName);
+            const buttonElement = evt.currentTarget;
+            
+            if (tabElement) {
+                tabElement.style.display = 'block';
+            } else {
+                console.error(`Erro: Aba com ID '${tabName}' não encontrada.`);
+                return;
+            }
+            
+            if (buttonElement) {
+                buttonElement.classList.add('active');
+            }
+
+            console.log(`Aba: '${tabName}' ativada.`);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Garante que o passo 1 esteja ativo ao carregar
-            document.getElementById('step-1').classList.add('active'); 
-            document.getElementById('simulacao').style.display = 'block';
+            // Garante que o passo 1 e a aba de simulação estejam ativos ao carregar
+            const step1 = document.getElementById('step-1');
+            if(step1) step1.classList.add('active');
+            
+            const simulacaoTab = document.getElementById('simulacao');
+            if(simulacaoTab) simulacaoTab.style.display = 'block';
+
+            const simulacaoBtn = document.querySelector('.tab-button.active');
+            if(simulacaoBtn) simulacaoBtn.classList.add('active');
         });
 
     </script>
