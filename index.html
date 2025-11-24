@@ -10,8 +10,9 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K75QBQZD');</script>
+    
     <style>
-        /* ESTILOS NOVOS E MELHORADOS */
+        /* ESTILOS CSS REVISADOS */
         body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #343a40; line-height: 1.6; }
         .header { background: linear-gradient(135deg, #004d99, #007bff); color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
         .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
@@ -24,7 +25,7 @@
             padding: 12px; 
             border: 1px solid #ced4da; 
             border-radius: 6px; 
-            width: 100%; /* Garante o mesmo tamanho */
+            width: 100%;
             box-sizing: border-box; 
             font-size: 16px;
         }
@@ -63,9 +64,11 @@
         .product-details span { display: block; }
 
         /* Status Bar */
+        .status-bar { display: flex; margin-bottom: 20px; background-color: #e9ecef; border-radius: 4px; overflow: hidden; }
+        .status-item { flex: 1; padding: 10px 0; text-align: center; color: #495057; font-weight: bold; background-color: #f1f1f1; transition: background-color 0.4s; }
         .status-item.current { background-color: #007bff; color: white; }
-        
-        /* Estilos adicionais mantidos do original */
+
+        /* Estilos de Abas */
         .tabs { display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; }
         .tab-button { background-color: #f1f1f1; border: none; padding: 15px 25px; cursor: pointer; font-size: 16px; transition: background-color 0.3s, color 0.3s; margin-right: 5px; border-top-left-radius: 8px; border-top-right-radius: 8px; }
         .tab-button.active { background-color: white; color: #007bff; border-bottom: 2px solid white; margin-bottom: -2px; font-weight: bold; box-shadow: 0 -2px 5px rgba(0,0,0,0.05); }
@@ -73,8 +76,6 @@
         h2 { color: #007bff; border-bottom: 1px solid #dee2e6; padding-bottom: 10px; margin-top: 0; }
         .funnel-step-content { display: none; padding: 20px; border-radius: 5px; margin-top: 15px; }
         .funnel-step-content.active { display: block; }
-        .status-bar { display: flex; margin-bottom: 20px; background-color: #e9ecef; border-radius: 4px; overflow: hidden; }
-        .status-item { flex: 1; padding: 10px 0; text-align: center; color: #495057; font-weight: bold; background-color: #f1f1f1; transition: background-color 0.4s; }
         .tutorial-step { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
         code { background-color: #eaf1f7; padding: 2px 4px; border-radius: 4px; color: #c0392b; font-size: 0.9em; }
     </style>
@@ -82,6 +83,7 @@
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K75QBQZD"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <div class="header">
         <h1>Sandbox Web Analytics: Funil de Reservas ✈️</h1>
         <p>Simulação avançada de rastreamento de funil, E-commerce Aprimorado e Propriedades de Usuário.</p>
@@ -95,7 +97,7 @@
 
         <div id="simulacao" class="tab-content active">
             <h2>Funil de Passagens Aéreas: Teste de Eventos e Parâmetros</h2>
-            <p><strong>Instrução:</strong> Avance nas etapas para disparar os eventos `view_search_results`, `select_item`, `begin_checkout` e `purchase`.</p>
+            <p><strong>Instrução:</strong> Avance nas etapas para disparar os eventos <code>view_search_results</code>, <code>select_item</code>, <code>begin_checkout</code> e <code>purchase</code>.</p>
 
             <div class="status-bar" id="funnel-status">
                 <div class="status-item current" data-step="1">1. Pesquisa</div>
@@ -174,9 +176,9 @@
                     </div>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group" style="flex-direction: row; align-items: center;">
                     <input type="checkbox" id="pet_service" onchange="updatePriceWithPet()" style="width: auto; margin-right: 10px;">
-                    <label for="pet_service" style="display: inline; font-weight: normal;">🐾 Adicionar Serviço Pet (R$ 100,00)</label>
+                    <label for="pet_service" style="margin-bottom: 0; font-weight: normal;">🐾 Adicionar Serviço Pet (R$ 100,00)</label>
                 </div>
 
                 <div class="funnel-nav" style="margin-top: 20px;">
@@ -202,8 +204,6 @@
 
         <div id="tutorial" class="tab-content" style="display:none;">
             <h2>Documentação do Projeto Analítico: Implementação GTM/GA4</h2>
-            <p>Este guia documenta o processo de setup, implementação e teste de eventos personalizados de funil para o Google Analytics 4 (GA4).</p>
-
             <div class="tutorial-step">
                 <h3>1. Setup Básico (GA4, GTM & Hosting)</h3>
                 <ul>
@@ -236,13 +236,12 @@
     <script>
         // Variável global para armazenar os dados do item selecionado
         let selectedFlight = {};
-        // Preço base (sem pet) e preço final ajustável (com pet)
         let basePrice = 0;
         let finalPrice = 0;
         const PET_COST = 100.00; // Custo fixo do serviço pet
 
         // -------------------------------------------------------------------
-        // FUNÇÕES DE NAVEGAÇÃO E STATUS (Melhoradas)
+        // FUNÇÕES DE NAVEGAÇÃO E STATUS
         // -------------------------------------------------------------------
         function updateStatus(step) {
             document.querySelectorAll('.status-item').forEach(item => {
@@ -260,16 +259,25 @@
                 document.getElementById('summary-email').innerText = document.getElementById('email_cliente').value;
             }
             
+            // Esconde todas as etapas
             document.querySelectorAll('.funnel-step-content').forEach(content => {
                 content.classList.remove('active');
             });
-            document.getElementById(`step-${nextStepNumber}`).classList.add('active');
+            
+            // Mostra a próxima etapa
+            const nextElement = document.getElementById(`step-${nextStepNumber}`);
+            if (nextElement) {
+                nextElement.classList.add('active');
+            } else {
+                console.error(`Erro: Elemento com ID 'step-${nextStepNumber}' não encontrado!`);
+                return;
+            }
 
             updateStatus(nextStepNumber);
         }
         
         // -------------------------------------------------------------------
-        // FUNÇÕES DE CÁLCULO (Novo)
+        // FUNÇÕES DE CÁLCULO
         // -------------------------------------------------------------------
         function updatePriceDisplay(price) {
             const formattedPrice = `R$ ${price.toFixed(2)}`;
@@ -285,15 +293,14 @@
                 finalPrice = basePrice + PET_COST;
             }
 
-            // Atualiza o display em tempo real
             updatePriceDisplay(finalPrice); 
             
-            // O DataLayer será atualizado no 'beginCheckout' e 'purchase'
+            // Re-dispara o beginCheckout para atualizar o DataLayer em tempo real
+            beginCheckout(true); 
         }
 
-
         // -------------------------------------------------------------------
-        // FUNÇÕES DATALAYER (GA4 Events - Lógica MANTIDA)
+        // FUNÇÕES DATALAYER (GA4 Events)
         // -------------------------------------------------------------------
         function viewSearchResults(eventName) {
             const origin = document.getElementById('origem').value;
@@ -307,9 +314,145 @@
             });
             console.log(`Event sent: ${eventName}`);
 
-            // Avança para a próxima etapa (Resultados)
-            nextStep(2);
+            // Avança para a próxima etapa (Etapa 2 - Seleção)
+            nextStep(2); 
         }
 
         function selectFlight(id, name, price) {
-            // Armazena os dados do vo
+            selectedFlight = { id, name, price };
+            basePrice = price;
+            finalPrice = price;
+            
+            document.getElementById('pet_service').checked = false; 
+
+            document.getElementById('flight-id').innerText = selectedFlight.id;
+            updatePriceDisplay(finalPrice); 
+
+            // Dispara o evento select_item (Etapa 2)
+            dataLayer.push({
+                'event': 'select_item',
+                'ecommerce': {
+                    'items': [{
+                        item_id: selectedFlight.id,
+                        item_name: selectedFlight.name,
+                        price: selectedFlight.price,
+                        currency: 'BRL',
+                        quantity: 1
+                    }]
+                }
+            });
+            console.log(`Event sent: select_item with price ${price}`);
+
+            // Avança para a próxima etapa (Checkout) e dispara begin_checkout
+            beginCheckout();
+        }
+        
+        function beginCheckout(isUpdate = false) {
+            // Reconstroi a lista de itens (incluindo pet, se aplicável)
+            const checkoutItems = [{
+                item_id: selectedFlight.id,
+                item_name: selectedFlight.name,
+                price: basePrice,
+                currency: 'BRL',
+                quantity: 1
+            }];
+
+            if (document.getElementById('pet_service') && document.getElementById('pet_service').checked) {
+                checkoutItems.push({
+                    item_id: 'SVC_PET',
+                    item_name: 'Serviço de Transporte Pet',
+                    price: PET_COST,
+                    currency: 'BRL',
+                    quantity: 1
+                });
+            }
+
+
+            // Dispara o evento begin_checkout (Etapa 3) com o preço final ajustável
+            dataLayer.push({
+                'event': 'begin_checkout',
+                'ecommerce': {
+                    'value': finalPrice, // Usa o preço ajustado (com/sem pet)
+                    'currency': 'BRL',
+                    'items': checkoutItems // Lista ajustada de itens
+                }
+            });
+            console.log(`Event sent: begin_checkout with total value ${finalPrice}`);
+            
+            if (!isUpdate) {
+                nextStep(3); // Apenas avança se não for um update de preço
+            }
+        }
+
+        function purchaseFlight() {
+            if (!selectedFlight.id) {
+                alert('Por favor, selecione um voo primeiro!');
+                return;
+            }
+
+            const transactionId = 'T-' + Math.floor(Math.random() * 100000);
+            
+            const nome = document.getElementById('nome_cliente').value || "Cliente Teste";
+            const email = document.getElementById('email_cliente').value || "teste@exemplo.com";
+            
+            // Reconstroi a lista de itens para o purchase (igual ao checkout)
+            const purchaseItems = [{
+                item_id: selectedFlight.id,
+                item_name: selectedFlight.name,
+                price: basePrice,
+                currency: 'BRL',
+                quantity: 1
+            }];
+
+            if (document.getElementById('pet_service').checked) {
+                purchaseItems.push({
+                    item_id: 'SVC_PET',
+                    item_name: 'Serviço de Transporte Pet',
+                    price: PET_COST,
+                    currency: 'BRL',
+                    quantity: 1
+                });
+            }
+
+
+            // Dispara o evento purchase (Conversão Final - Etapa 4)
+            dataLayer.push({
+                'event': 'purchase',
+                // PARÂMETROS PERSONALIZADOS DO CLIENTE
+                'user_name': nome,
+                'user_email': email,
+                'ecommerce': {
+                    'transaction_id': transactionId,
+                    'value': finalPrice, // Valor total ajustado
+                    'currency': 'BRL',
+                    'items': purchaseItems // Lista ajustada de itens
+                }
+            });
+            alert(`COMPRA FINALIZADA! Evento 'purchase' enviado com ID: ${transactionId}. Verifique no GA4!`);
+            console.log(`Event sent: purchase with transaction ID ${transactionId}`);
+            nextStep(4);
+        }
+
+        // -------------------------------------------------------------------
+        // FUNÇÕES DE CONTROLE DE ABAS
+        // -------------------------------------------------------------------
+        function openTab(evt, tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(tabName).style.display = 'block';
+            evt.currentTarget.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Garante que o passo 1 esteja ativo ao carregar
+            document.getElementById('step-1').classList.add('active'); 
+            document.getElementById('simulacao').style.display = 'block';
+        });
+
+    </script>
+</body>
+</html>
