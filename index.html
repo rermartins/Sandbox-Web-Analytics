@@ -11,29 +11,70 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K75QBQZD');</script>
     <style>
-        /* Estilos Base e Layout */
-        body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #343a40; line-height: 1.6; }
-        .header { background-color: #004d99; color: white; padding: 30px 20px; text-align: center; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        /* ESTILOS NOVOS E MELHORADOS */
+        body { font-family: 'Roboto', Arial, sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #343a40; line-height: 1.6; }
+        .header { background: linear-gradient(135deg, #004d99, #007bff); color: white; padding: 40px 20px; text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        
+        /* Layout e Formulário */
+        .input-group { display: flex; flex-direction: column; margin-bottom: 15px; }
+        .input-group label { margin-bottom: 5px; font-weight: bold; color: #495057; }
+        
+        input[type="text"], input[type="email"], input[type="date"], select { 
+            padding: 12px; 
+            border: 1px solid #ced4da; 
+            border-radius: 6px; 
+            width: 100%; /* Garante o mesmo tamanho */
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
+        
+        /* Botões de Ação */
+        .funnel-nav button { 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 16px;
+            margin-right: 10px;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-primary:hover { background-color: #0056b3; transform: translateY(-1px); }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-secondary:hover { background-color: #5a6268; }
+        
+        /* Cards de Produto */
+        .product-card { 
+            border: 2px solid #007bff; 
+            background-color: #f8faff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-bottom: 15px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .product-card:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 123, 255, 0.15); }
+        .product-details strong { color: #007bff; font-size: 1.1em; }
+        .product-details span { display: block; }
+
+        /* Status Bar */
+        .status-item.current { background-color: #007bff; color: white; }
+        
+        /* Estilos adicionais mantidos do original */
         .tabs { display: flex; border-bottom: 2px solid #dee2e6; margin-bottom: 20px; }
         .tab-button { background-color: #f1f1f1; border: none; padding: 15px 25px; cursor: pointer; font-size: 16px; transition: background-color 0.3s, color 0.3s; margin-right: 5px; border-top-left-radius: 8px; border-top-right-radius: 8px; }
         .tab-button.active { background-color: white; color: #007bff; border-bottom: 2px solid white; margin-bottom: -2px; font-weight: bold; box-shadow: 0 -2px 5px rgba(0,0,0,0.05); }
         .tab-content { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); }
         h2 { color: #007bff; border-bottom: 1px solid #dee2e6; padding-bottom: 10px; margin-top: 0; }
-        h3 { color: #2c3e50; margin-top: 20px; }
-        
-        /* Estilos de Formulário/Funil */
-        .funnel-step-content { display: none; padding: 20px; border: 1px solid #e9ecef; border-radius: 5px; margin-top: 15px; }
+        .funnel-step-content { display: none; padding: 20px; border-radius: 5px; margin-top: 15px; }
         .funnel-step-content.active { display: block; }
-        .funnel-nav button { margin-right: 10px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; background-color: #28a745; color: white; transition: background-color 0.3s; }
-        .funnel-nav button:hover { background-color: #218838; }
-        input[type="text"], input[type="date"] { padding: 10px; margin-right: 10px; border: 1px solid #ced4da; border-radius: 4px; }
-        .product-card { border: 1px solid #007bff; padding: 15px; border-radius: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .status-bar { display: flex; margin-bottom: 20px; background-color: #e9ecef; border-radius: 4px; overflow: hidden; }
         .status-item { flex: 1; padding: 10px 0; text-align: center; color: #495057; font-weight: bold; background-color: #f1f1f1; transition: background-color 0.4s; }
-        .status-item.current { background-color: #007bff; color: white; }
-
-        /* Estilos de Tutorial */
         .tutorial-step { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-bottom: 15px; }
         code { background-color: #eaf1f7; padding: 2px 4px; border-radius: 4px; color: #c0392b; font-size: 0.9em; }
     </style>
@@ -42,8 +83,8 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K75QBQZD"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="header">
-        <h1>Sandbox Web Analytics: GTM/GA4 Web Funnel Analytics</h1>
-        <p>Simulação e documentação do processo de implementação de tagueamento de funil com dados avançados.</p>
+        <h1>Sandbox Web Analytics: Funil de Reservas ✈️</h1>
+        <p>Simulação avançada de rastreamento de funil, E-commerce Aprimorado e Propriedades de Usuário.</p>
     </div>
 
     <div class="container">
@@ -54,57 +95,107 @@
 
         <div id="simulacao" class="tab-content active">
             <h2>Funil de Passagens Aéreas: Teste de Eventos e Parâmetros</h2>
-            <p><strong>Instrução:</strong> Use o **Tag Assistant** do GTM e clique em cada passo para rastrear o funil. Os eventos e dados estão em conformidade com o padrão de Enhanced E-commerce do GA4.</p>
+            <p><strong>Instrução:</strong> Avance nas etapas para disparar os eventos `view_search_results`, `select_item`, `begin_checkout` e `purchase`.</p>
 
             <div class="status-bar" id="funnel-status">
                 <div class="status-item current" data-step="1">1. Pesquisa</div>
                 <div class="status-item" data-step="2">2. Seleção</div>
-                <div class="status-item" data-step="3">3. Checkout</div>
+                <div class="status-item" data-step="3">3. Dados Pessoais</div>
                 <div class="status-item" data-step="4">4. Purchase</div>
             </div>
 
             <div id="step-1" class="funnel-step-content active">
                 <h3>1. Pesquisa de Voos (view_search_results)</h3>
-                <p>Simulação de busca por origem/destino.</p>
-                <input type="text" id="origem" value="GRU" placeholder="Origem (ex: GRU)">
-                <input type="text" id="destino" value="GIG" placeholder="Destino (ex: GIG)">
-                <input type="date" id="data_voo" value="2025-12-15">
-                <div class="funnel-nav" style="margin-top: 15px;">
-                    <button onclick="viewSearchResults('view_search_results')">Pesquisar Voos</button>
+                <p>Escolha a origem e o destino para simular uma busca.</p>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="origem">Origem (Aeroporto)</label>
+                        <select id="origem">
+                            <option value="GRU">GRU (São Paulo)</option>
+                            <option value="BSB">BSB (Brasília)</option>
+                            <option value="VCP">VCP (Campinas)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="destino">Destino (Aeroporto)</label>
+                        <select id="destino">
+                            <option value="GIG">GIG (Rio de Janeiro)</option>
+                            <option value="FOR">FOR (Fortaleza)</option>
+                            <option value="SSA">SSA (Salvador)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="data_voo">Data do Voo</label>
+                        <input type="date" id="data_voo" value="2025-12-15">
+                    </div>
+                </div>
+                <div class="funnel-nav">
+                    <button class="btn-primary" onclick="viewSearchResults('view_search_results')">🔍 Pesquisar Voos</button>
                 </div>
             </div>
 
             <div id="step-2" class="funnel-step-content">
                 <h3>2. Seleção de Voo (select_item)</h3>
-                <p>Simulação de opções de voo disponíveis. Escolha uma para avançar.</p>
+                <p>Escolha a classe do voo para enviar o evento <code>select_item</code>.</p>
+                
                 <div class="product-card">
-                    <span>Voo LATAM LA3400 (Executiva) - 15/Dez</span>
-                    <span><strong>R$ 1.850,50</strong></span>
-                    <button class="button-analytics" onclick="selectFlight('Voo_LA3400', 'Executiva', 1850.50)">Selecionar</button>
+                    <div class="product-details">
+                        <span>✈️ Voo LATAM LA3400 (Executiva)</span>
+                        <strong>R$ 1.850,50</strong>
+                    </div>
+                    <button class="btn-primary button-analytics" onclick="selectFlight('Voo_LA3400', 'Executiva', 1850.50)">Selecionar Voo</button>
                 </div>
+                
                 <div class="product-card">
-                    <span>Voo GOL G3200 (Econômica) - 15/Dez</span>
-                    <span><strong>R$ 890,00</strong></span>
-                    <button class="button-analytics" onclick="selectFlight('Voo_G3200', 'Econômica', 890.00)">Selecionar</button>
+                    <div class="product-details">
+                        <span>✈️ Voo GOL G3200 (Econômica)</span>
+                        <strong>R$ 890,00</strong>
+                    </div>
+                    <button class="btn-primary button-analytics" onclick="selectFlight('Voo_G3200', 'Econômica', 890.00)">Selecionar Voo</button>
+                </div>
+
+                <div class="funnel-nav" style="margin-top: 20px;">
+                    <button class="btn-secondary" onclick="nextStep(1)">← Voltar à Pesquisa</button>
                 </div>
             </div>
 
             <div id="step-3" class="funnel-step-content">
-                <h3>3. Início do Checkout (begin_checkout)</h3>
-                <p><strong>Sumário:</strong> Voo <span id="flight-id">---</span>, Valor Total: <span id="flight-price">---</span>. (Dados enviados ao DataLayer).</p>
-                <input type="text" id="nome_cliente" placeholder="Nome Completo" value="Cliente Teste">
-                <input type="email" id="email_cliente" placeholder="E-mail" value="teste@exemplo.com">
-                <div class="funnel-nav" style="margin-top: 15px;">
-                    <button onclick="nextStep(4)">Continuar para o Pagamento</button>
+                <h3>3. Dados Pessoais (begin_checkout)</h3>
+                <p>Dados enviados no <code>begin_checkout</code>: Voo <span id="flight-id">---</span>, Valor: <span id="flight-price">---</span>.</p>
+                
+                <div class="form-row">
+                    <div class="input-group">
+                        <label for="nome_cliente">Nome Completo</label>
+                        <input type="text" id="nome_cliente" value="Cliente Teste">
+                    </div>
+                    <div class="input-group">
+                        <label for="email_cliente">E-mail</label>
+                        <input type="email" id="email_cliente" value="teste@exemplo.com">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="checkbox" id="pet_service" onchange="updatePriceWithPet()" style="width: auto; margin-right: 10px;">
+                    <label for="pet_service" style="display: inline; font-weight: normal;">🐾 Adicionar Serviço Pet (R$ 100,00)</label>
+                </div>
+
+                <div class="funnel-nav" style="margin-top: 20px;">
+                    <button class="btn-secondary" onclick="nextStep(2)">← Voltar à Seleção</button>
+                    <button class="btn-primary" onclick="nextStep(4)">Continuar para o Pagamento →</button>
                 </div>
             </div>
 
             <div id="step-4" class="funnel-step-content">
                 <h3>4. Purchase (Transação Final)</h3>
-                <p>Ação final de conversão. O evento <code>purchase</code> é crucial para a receita no GA4.</p>
-                <p><strong>Valor Total Rastreável:</strong> <span id="final-price">---</span></p>
-                <div class="funnel-nav" style="margin-top: 15px;">
-                    <button onclick="purchaseFlight()">Finalizar Compra e Rastrear</button>
+                <p>Confirme a compra. O evento <code>purchase</code> será disparado com ID da transação e dados do cliente.</p>
+                <div style="background-color: #e6f7ff; border: 1px solid #91d5ff; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <p>Valor Final com Serviços: <strong><span id="final-price">---</span></strong></p>
+                    <p>Cliente: <span id="summary-nome">---</span> | E-mail: <span id="summary-email">---</span></p>
+                </div>
+                
+                <div class="funnel-nav">
+                    <button class="btn-secondary" onclick="nextStep(3)">← Voltar aos Dados</button>
+                    <button class="btn-primary" onclick="purchaseFlight()">💰 Finalizar Compra e Rastrear</button>
                 </div>
             </div>
         </div>
@@ -145,9 +236,13 @@
     <script>
         // Variável global para armazenar os dados do item selecionado
         let selectedFlight = {};
+        // Preço base (sem pet) e preço final ajustável (com pet)
+        let basePrice = 0;
+        let finalPrice = 0;
+        const PET_COST = 100.00; // Custo fixo do serviço pet
 
         // -------------------------------------------------------------------
-        // FUNÇÕES DE NAVEGAÇÃO
+        // FUNÇÕES DE NAVEGAÇÃO E STATUS (Melhoradas)
         // -------------------------------------------------------------------
         function updateStatus(step) {
             document.querySelectorAll('.status-item').forEach(item => {
@@ -159,18 +254,46 @@
         }
 
         function nextStep(nextStepNumber) {
-            // Esconde todas as etapas e mostra a próxima
+            // Se estiver indo do passo 3 para o 4 (Purchase), atualiza o sumário final
+            if (nextStepNumber === 4) {
+                document.getElementById('summary-nome').innerText = document.getElementById('nome_cliente').value;
+                document.getElementById('summary-email').innerText = document.getElementById('email_cliente').value;
+            }
+            
             document.querySelectorAll('.funnel-step-content').forEach(content => {
                 content.classList.remove('active');
             });
             document.getElementById(`step-${nextStepNumber}`).classList.add('active');
 
-            // Atualiza a barra de status
             updateStatus(nextStepNumber);
         }
+        
+        // -------------------------------------------------------------------
+        // FUNÇÕES DE CÁLCULO (Novo)
+        // -------------------------------------------------------------------
+        function updatePriceDisplay(price) {
+            const formattedPrice = `R$ ${price.toFixed(2)}`;
+            document.getElementById('flight-price').innerText = formattedPrice;
+            document.getElementById('final-price').innerText = formattedPrice;
+        }
+
+        function updatePriceWithPet() {
+            const petCheckbox = document.getElementById('pet_service');
+            finalPrice = basePrice;
+
+            if (petCheckbox.checked) {
+                finalPrice = basePrice + PET_COST;
+            }
+
+            // Atualiza o display em tempo real
+            updatePriceDisplay(finalPrice); 
+            
+            // O DataLayer será atualizado no 'beginCheckout' e 'purchase'
+        }
+
 
         // -------------------------------------------------------------------
-        // FUNÇÕES DATALAYER (EVENTOS GA4)
+        // FUNÇÕES DATALAYER (GA4 Events - Lógica MANTIDA)
         // -------------------------------------------------------------------
         function viewSearchResults(eventName) {
             const origin = document.getElementById('origem').value;
@@ -189,113 +312,4 @@
         }
 
         function selectFlight(id, name, price) {
-            // Armazena os dados do voo e preenche o sumário do checkout
-            selectedFlight = { id, name, price };
-
-            document.getElementById('flight-id').innerText = selectedFlight.id;
-            document.getElementById('flight-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
-            document.getElementById('final-price').innerText = `R$ ${selectedFlight.price.toFixed(2)}`;
-
-            // Dispara o evento select_item (Etapa 2)
-            dataLayer.push({
-                'event': 'select_item',
-                'ecommerce': {
-                    'items': [{
-                        item_id: selectedFlight.id,
-                        item_name: selectedFlight.name,
-                        price: selectedFlight.price,
-                        currency: 'BRL',
-                        quantity: 1
-                    }]
-                }
-            });
-            console.log(`Event sent: select_item with price ${price}`);
-
-            // Avança para a próxima etapa (Checkout) e dispara begin_checkout
-            beginCheckout();
-        }
-        
-        function beginCheckout() {
-            // Dispara o evento begin_checkout (Etapa 3)
-            dataLayer.push({
-                'event': 'begin_checkout',
-                'ecommerce': {
-                    'value': selectedFlight.price,
-                    'currency': 'BRL',
-                    'items': [{
-                        item_id: selectedFlight.id,
-                        item_name: selectedFlight.name,
-                        price: selectedFlight.price,
-                        currency: 'BRL',
-                        quantity: 1
-                    }]
-                }
-            });
-            console.log('Event sent: begin_checkout');
-            nextStep(3); // Vai para o passo 3 onde o usuário insere os dados
-        }
-
-        function purchaseFlight() {
-            if (!selectedFlight.id) {
-                alert('Por favor, selecione um voo primeiro!');
-                return;
-            }
-
-            const transactionId = 'T-' + Math.floor(Math.random() * 100000);
-            
-            // Leitura dos dados do cliente dos inputs corrigidos no HTML
-            const nome = document.getElementById('nome_cliente').value || "Cliente Teste";
-            const email = document.getElementById('email_cliente').value || "teste@exemplo.com";
-
-
-            // Dispara o evento purchase (Conversão Final - Etapa 4)
-            dataLayer.push({
-                'event': 'purchase',
-                // PARÂMETROS PERSONALIZADOS DO CLIENTE
-                'user_name': nome,
-                'user_email': email,
-                'ecommerce': {
-                    'transaction_id': transactionId,
-                    'value': selectedFlight.price,
-                    'currency': 'BRL',
-                    'items': [{
-                        item_id: selectedFlight.id,
-                        item_name: selectedFlight.name,
-                        price: selectedFlight.price,
-                        currency: 'BRL',
-                        quantity: 1
-                    }]
-                }
-            });
-            alert(`COMPRA FINALIZADA! Evento 'purchase' enviado com ID: ${transactionId}. Verifique no GA4!`);
-            console.log(`Event sent: purchase with transaction ID ${transactionId}`);
-            nextStep(4);
-        }
-
-        // -------------------------------------------------------------------
-        // FUNÇÕES DE CONTROLE DE ABAS
-        // -------------------------------------------------------------------
-        function openTab(evt, tabName) {
-            // Esconde todo o conteúdo da aba
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.style.display = 'none';
-            });
-
-            // Remove a classe 'active' de todos os botões
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
-            });
-
-            // Mostra o conteúdo da aba atual e define o botão como ativo
-            document.getElementById(tabName).style.display = 'block';
-            evt.currentTarget.classList.add('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Garante que a primeira aba de simulação esteja ativa ao carregar
-            document.getElementById('simulacao').style.display = 'block';
-        });
-
-    </script>
-</body>
-</html>
+            // Armazena os dados do vo
