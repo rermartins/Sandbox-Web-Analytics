@@ -31,7 +31,7 @@ A página principal (`index.html`) simula a experiência de um site de reserva d
 | **3.** | Início do Checkout | `begin_checkout` | Início do funil de conversão (momento crítico de abandono). |
 | **4.** | Compra Final | `purchase` | Conversão final e registro de receita (Transação ID e Valor). |
 
-**🔗 Teste o Funil Agora:** [Insira Aqui a URL do seu GitHub Pages, ex: `https://rermartins.github.io/meu-sandbox/`]
+**🔗 Teste o Funil Agora:** https://rermartins.github.io/Sandbox-Web-Analytics/
 
 ---
 
