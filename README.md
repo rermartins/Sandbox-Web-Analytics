@@ -43,7 +43,7 @@ Esta seção será atualizada com as análises geradas a partir dos dados coleta
 
 * **Objetivo:** Provar que o GTM está capturando todos os eventos personalizados corretamente.
 
-![Simulador de Funil Web Print](images/simulador_site_funild.png)
+![Simulador de Funil Site](images/simulador_site_funild.png)
 ![Tags Print](images/tags_configuradas.png)
 
 ### B. Relatório de Conversão no GA4
