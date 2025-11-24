@@ -43,14 +43,14 @@ Esta seção será atualizada com as análises geradas a partir dos dados coleta
 
 * **Objetivo:** Provar que o GTM está capturando todos os eventos personalizados corretamente.
 
-![Simulador de Funil Web Print](images/simulador_funil_web.png)
-![Tag Assistant Print](images/tag_assistant_print.png)
+![Simulador de Funil Web Print](images/simulador_site_funild.png)
+![Tags Print](images/tags_configuradas.png)
 
 ### B. Relatório de Conversão no GA4
 
 * **Objetivo:** Mostrar que a Tag de `purchase` está sendo corretamente registrada como uma conversão de receita no Google Analytics 4.
-
-
+![Purchase enviado](images/purchase_enviado.png)
+![Purchase dados](images/dados_purchase.png)
 
 ### C. Funil de Visualização
 
